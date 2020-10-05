@@ -19,4 +19,16 @@ public class MainMenuManager : MonoBehaviour
             AudioManager.Instance.PlaySong(_startingSong);
         }
     }
+
+    public void ResetScore()
+    {
+        PlayerPrefs.SetInt("HighScore", 0);
+        int _highScore = PlayerPrefs.GetInt("HighScore");
+        _highScoreTextView.text = _highScore.ToString();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
