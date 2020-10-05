@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] AudioClip _startingSong;
     [SerializeField] Text _highScoreTextView;
 
     // Start is called before the first frame update
@@ -13,11 +12,6 @@ public class MainMenuManager : MonoBehaviour
     {
         int _highScore = PlayerPrefs.GetInt("HighScore");
         _highScoreTextView.text = _highScore.ToString();
-
-        if(_startingSong != null)
-        {
-            AudioManager.Instance.PlaySong(_startingSong);
-        }
     }
 
     public void ResetScore()

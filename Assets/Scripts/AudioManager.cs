@@ -6,6 +6,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance = null;
+    [SerializeField] AudioClip _startingSong;
 
     AudioSource _audioSource;
 
@@ -22,6 +23,14 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         #endregion
+    }
+
+    private void Start()
+    {
+        if (_startingSong != null)
+        {
+            AudioManager.Instance.PlaySong(_startingSong);
+        }
     }
 
     public void PlaySong(AudioClip clip)
