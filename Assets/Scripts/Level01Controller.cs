@@ -8,6 +8,7 @@ public class Level01Controller : MonoBehaviour
 {
     [SerializeField] Text _currentScoreTextView;
     [SerializeField] GameObject _popUp;
+    [SerializeField] GameObject _deathPopUp;
 
     int _currentScore;
     bool _menuOpen = false;
@@ -55,6 +56,21 @@ public class Level01Controller : MonoBehaviour
         _popUp.SetActive(false);
         _menuOpen = false;
         CursorLock();
+        Time.timeScale = 1f;
+    }
+
+    public void Death()
+    {
+        _deathPopUp.SetActive(true);
+        CursorUnlock();
+        _menuOpen = true;
+        Time.timeScale = 0f;
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _deathPopUp.SetActive(false);
         Time.timeScale = 1f;
     }
 

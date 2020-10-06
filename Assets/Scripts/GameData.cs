@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class GameData : MonoBehaviour
 {
     [SerializeField] Slider _healthSlider = null;
+    [SerializeField] Level01Controller _levelController = null;
     public int _topHealth = 100;
-    int _health;
+    public int _health;
 
     void Start()
     {
@@ -19,5 +20,9 @@ public class GameData : MonoBehaviour
     void Update()
     {
         _healthSlider.value = _health;
+        if(_health <= 0)
+        {
+            _levelController.Death();
+        }
     }
 }
