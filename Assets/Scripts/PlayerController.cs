@@ -9,9 +9,16 @@ public class PlayerController : MonoBehaviour
     FPSInput _input = null;
     FPSMotor _motor = null;
 
+    [Header("Gun")]
+    [SerializeField] AudioSource _fireSound = null;
+    [SerializeField] ParticleSystem _fireParticles = null;
+
     [SerializeField] float _moveSpeed = .1f;
+    [SerializeField] float _sprintSpeed = .2f;
     [SerializeField] float _turnSpeed = 6f;
     [SerializeField] float _jumpStrength = 20f;
+
+    float _currentMovementSpeed;
 
     private void Awake()
     {
@@ -22,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        _currentMovementSpeed = _moveSpeed;
     }
 
     private void OnEnable()
@@ -29,6 +37,9 @@ public class PlayerController : MonoBehaviour
         _input.MoveInput += OnMove;
         _input.RotateInput += OnRotate;
         _input.JumpInput += OnJump;
+        _input.SprintDownInput += OnSprintDown;
+        _input.SprintUpInput += OnSprintUp;
+        _input.FireInput += OnFire;
     }
 
     private void OnDisable()
@@ -36,11 +47,14 @@ public class PlayerController : MonoBehaviour
         _input.MoveInput -= OnMove;
         _input.RotateInput -= OnRotate;
         _input.JumpInput -= OnJump;
+        _input.SprintDownInput -= OnSprintDown;
+        _input.SprintUpInput -= OnSprintUp;
+        _input.FireInput -= OnFire;
     }
 
     void OnMove(Vector3 movement)
     {
-        _motor.Move(movement * _moveSpeed);
+        _motor.Move(movement * _currentMovementSpeed);
     }
 
     void OnRotate(Vector3 rotation)
@@ -52,5 +66,21 @@ public class PlayerController : MonoBehaviour
     void OnJump()
     {
         _motor.Jump(_jumpStrength);
+    }
+
+    void OnSprintDown()
+    {
+        _currentMovementSpeed = _sprintSpeed;
+    }
+
+    void OnSprintUp()
+    {
+        _currentMovementSpeed = _moveSpeed;
+    }
+
+    void OnFire()
+    {
+        _fireSound.Play();
+        _fireParticles.Play();
     }
 }
