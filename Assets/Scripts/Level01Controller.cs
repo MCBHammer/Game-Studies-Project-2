@@ -14,7 +14,8 @@ public class Level01Controller : MonoBehaviour
 
     void Start()
     {
-        CursorLock();
+        //CursorLock();
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -22,15 +23,12 @@ public class Level01Controller : MonoBehaviour
     {
         if(_menuOpen == false)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                IncreaseScore(5);
-            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _popUp.SetActive(true);
                 _menuOpen = true;
                 CursorUnlock();
+                Time.timeScale = 0f;
             }
         } else
         {
@@ -57,6 +55,7 @@ public class Level01Controller : MonoBehaviour
         _popUp.SetActive(false);
         _menuOpen = false;
         CursorLock();
+        Time.timeScale = 1f;
     }
 
     public void IncreaseScore(int scoreIncrease)
