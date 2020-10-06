@@ -10,12 +10,17 @@ public class FPSInput : MonoBehaviour
     public event Action<Vector3> MoveInput = delegate { };
     public event Action<Vector3> RotateInput = delegate { };
     public event Action JumpInput = delegate { };
+    public event Action SprintDownInput = delegate { };
+    public event Action SprintUpInput = delegate { };
+    public event Action FireInput = delegate { };
 
     void Update()
     {
         DetectMoveInput();
         DetectRotateInput();
         DetectJumpInput();
+        DetectSprintInput();
+        DetectFireInput();
     }
 
     void DetectMoveInput()
@@ -55,6 +60,26 @@ public class FPSInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             JumpInput?.Invoke();
+        }
+    }
+
+    void DetectSprintInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            SprintDownInput?.Invoke();
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            SprintUpInput?.Invoke();
+        }
+    }
+
+    void DetectFireInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            FireInput?.Invoke();
         }
     }
 }
