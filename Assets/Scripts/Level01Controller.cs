@@ -31,6 +31,10 @@ public class Level01Controller : MonoBehaviour
                 CursorUnlock();
                 Time.timeScale = 0f;
             }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                _currentScore += 5;
+            }
         } else
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -38,6 +42,7 @@ public class Level01Controller : MonoBehaviour
                 ResumeLevel();
             }
         }
+        _currentScoreTextView.text = ("Current Score: " + _currentScore);
     }
 
     public void ExitLevel()
