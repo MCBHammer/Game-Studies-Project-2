@@ -5439,7 +5439,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214888782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.14, y: 1.09, z: 3.6913235}
+  m_LocalPosition: {x: -5.341, y: 0.81, z: 4.814}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1254453041}
@@ -10652,8 +10652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce69248df22f154997166e3df23230a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireSound: {fileID: 29216920}
-  _fireParticles: {fileID: 29216919}
   _moveSpeed: 0.1
   _sprintSpeed: 0.2
   _turnSpeed: 12
@@ -10721,6 +10719,9 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 257
+  pistolCooldown: 0.5
+  _fireSound: {fileID: 29216920}
+  _fireParticles: {fileID: 29216919}
 --- !u!1 &848210723
 GameObject:
   m_ObjectHideFlags: 0
@@ -11522,11 +11523,11 @@ GameObject:
   - component: {fileID: 1254453041}
   - component: {fileID: 1254453040}
   - component: {fileID: 1254453039}
+  - component: {fileID: 1254453043}
   - component: {fileID: 1254453037}
   - component: {fileID: 1254453036}
   - component: {fileID: 1254453038}
   - component: {fileID: 1254453042}
-  - component: {fileID: 1254453043}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Hazard

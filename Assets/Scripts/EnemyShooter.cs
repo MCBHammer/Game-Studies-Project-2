@@ -16,14 +16,14 @@ public class EnemyShooter : MonoBehaviour
     bool firing = false;
 
     Rigidbody projectileRB;
-    Vector3 startingPosition;
+    float dist;
 
     void Start()
     {
         chargeTime = chargeParticles.duration;
-        startingPosition = enemyProjectile.transform.position;
         projectileRB = enemyProjectile.GetComponent<Rigidbody>();
-        ReadyFire();
+        Physics.IgnoreCollision(enemyProjectile.GetComponent<BoxCollider>(), this.gameObject.GetComponent<SphereCollider>());
+        //ReadyFire();
     }
 
     public void TakeDamage(int damageTaken)
@@ -37,13 +37,17 @@ public class EnemyShooter : MonoBehaviour
 
     void Update()
     {
-
+        dist = Vector3.Distance(targetPlayer.position, this.transform.position);
+        if(dist <= 10)
+        {
+            ReadyFire();
+        }
     }
 
     //Start Fire Sequence
     void ReadyFire()
     {
-        if(firing == false) 
+        if(firing == false && enemyProjectile.activeSelf == false) 
         {
             StartCoroutine(chargeWait());
         }
@@ -51,13 +55,11 @@ public class EnemyShooter : MonoBehaviour
 
     IEnumerator chargeWait()
     {
-        yield return new WaitForSeconds(3f);
         firing = true;
         chargeParticles.Play();
         yield return new WaitForSeconds(chargeTime);
         Shoot();
         yield return new WaitForSeconds(shotCooldown);
-        firing = false;
     }
 
     void Shoot()
@@ -69,10 +71,13 @@ public class EnemyShooter : MonoBehaviour
     IEnumerator projectileSpawn()
     {
         enemyProjectile.SetActive(true);
-        enemyProjectile.transform.position = startingPosition;
+        enemyProjectile.transform.localPosition = new Vector3(0, 0, 0);
+        projectileRB.velocity = Vector3.zero;
+        projectileRB.angularVelocity = Vector3.zero;
         projectileRB.AddForce(transform.forward * projectileSpeed);
         yield return new WaitForSeconds(projectileLifetime);
         enemyProjectile.SetActive(false);
+        firing = false;
     }
     //End Fire Sequence
 }

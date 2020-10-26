@@ -12,7 +12,6 @@ public class FPSInput : MonoBehaviour
     public event Action JumpInput = delegate { };
     public event Action SprintDownInput = delegate { };
     public event Action SprintUpInput = delegate { };
-    public event Action FireInput = delegate { };
 
     void Update()
     {
@@ -20,7 +19,6 @@ public class FPSInput : MonoBehaviour
         DetectRotateInput();
         DetectJumpInput();
         DetectSprintInput();
-        DetectFireInput();
     }
 
     void DetectMoveInput()
@@ -75,11 +73,4 @@ public class FPSInput : MonoBehaviour
         }
     }
 
-    void DetectFireInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            FireInput?.Invoke();
-        }
-    }
 }

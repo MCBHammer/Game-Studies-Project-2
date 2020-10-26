@@ -9,10 +9,6 @@ public class PlayerController : MonoBehaviour
     FPSInput _input = null;
     FPSMotor _motor = null;
 
-    [Header("Gun")]
-    [SerializeField] AudioSource _fireSound = null;
-    [SerializeField] ParticleSystem _fireParticles = null;
-
     [SerializeField] float _moveSpeed = .1f;
     [SerializeField] float _sprintSpeed = .2f;
     [SerializeField] float _turnSpeed = 6f;
@@ -39,7 +35,6 @@ public class PlayerController : MonoBehaviour
         _input.JumpInput += OnJump;
         _input.SprintDownInput += OnSprintDown;
         _input.SprintUpInput += OnSprintUp;
-        _input.FireInput += OnFire;
     }
 
     private void OnDisable()
@@ -49,7 +44,6 @@ public class PlayerController : MonoBehaviour
         _input.JumpInput -= OnJump;
         _input.SprintDownInput -= OnSprintDown;
         _input.SprintUpInput -= OnSprintUp;
-        _input.FireInput -= OnFire;
     }
 
     void OnMove(Vector3 movement)
@@ -78,9 +72,4 @@ public class PlayerController : MonoBehaviour
         _currentMovementSpeed = _moveSpeed;
     }
 
-    void OnFire()
-    {
-        _fireSound.Play();
-        _fireParticles.Play();
-    }
 }
