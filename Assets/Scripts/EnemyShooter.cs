@@ -32,11 +32,6 @@ public class EnemyShooter : MonoBehaviour
     public void TakeDamage(int damageTaken)
     {
         health -= damageTaken;
-        if(health <= 0)
-        {
-            Destroy(this.gameObject);
-            scoreKeeper._currentScore += 1;
-        }
     }
 
     void Update()
@@ -45,6 +40,11 @@ public class EnemyShooter : MonoBehaviour
         if(dist <= 10)
         {
             ReadyFire();
+        }
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+            scoreKeeper._currentScore += 1;
         }
     }
 
