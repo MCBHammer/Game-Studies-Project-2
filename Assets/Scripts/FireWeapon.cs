@@ -68,13 +68,13 @@ public class FireWeapon : MonoBehaviour
             }
             if (Input.GetMouseButton(1))
             {
-                pistol.transform.localPosition = aimingPosition;
-                shotgun.transform.localPosition = aimingPosition;
+                pistolWhip.Play("PistolScope");
+                shotgunWhip.Play("ShotgunScope");
             }
             if (Input.GetMouseButtonUp(1))
             {
-                pistol.transform.localPosition = startingPosition;
-                shotgun.transform.localPosition = startingPosition;
+                pistolWhip.Play("IdlePistol");
+                shotgunWhip.Play("IdleShotgun");
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
