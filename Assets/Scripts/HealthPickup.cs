@@ -9,7 +9,7 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && _gameData._health < _gameData._topHealth)
         {
             _gameData._health += _healthRestored;
             Destroy(this.gameObject);
