@@ -31,15 +31,14 @@ public class FireWeapon : MonoBehaviour
         {
             if(objectHit.transform.tag == "Enemy")
             {
-                visualFeedback.transform.position = objectHit.point;
-
                 EnemyShooter enemyShooter = objectHit.transform.gameObject.GetComponent<EnemyShooter>();
                 if (enemyShooter != null)
                 {
                     enemyShooter.TakeDamage(pistolDamage);
                 }
             }
-            Debug.Log("You hit the " + objectHit.transform.name);   
+            Debug.Log("You hit the " + objectHit.transform.name);
+            visualFeedback.transform.position = objectHit.point;
         } else
         {
             Debug.Log("Miss");
