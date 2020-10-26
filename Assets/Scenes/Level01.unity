@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 29216920}
   - component: {fileID: 29216919}
   - component: {fileID: 29216918}
+  - component: {fileID: 29216923}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -5096,6 +5097,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29216916}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &29216923
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29216916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ed5257c79bd78a742ae011f88955f0c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &63477812
 GameObject:
   m_ObjectHideFlags: 0
@@ -5967,6 +5987,10 @@ MonoBehaviour:
   shotgunShots: 10
   shotgunAmmoMax: 10
   shotgunRecoil: 250
+  pistolWhip: {fileID: 29216923}
+  shotgunWhip: {fileID: 2072243871}
+  meleeDamage: 100
+  punchDistance: 2
 --- !u!1 &799690664
 GameObject:
   m_ObjectHideFlags: 0
@@ -8108,6 +8132,7 @@ GameObject:
   - component: {fileID: 2072243868}
   - component: {fileID: 2072243867}
   - component: {fileID: 2072243866}
+  - component: {fileID: 2072243871}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -12995,6 +13020,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072243864}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &2072243871
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072243864}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72c946d015dc9cc4297e707d059c4e6b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2101851837
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,13 @@ public class FireWeapon : MonoBehaviour
     int shotgunAmmo;
     bool shotgunDown = false;
 
+    [Header("Melee")]
+    [SerializeField] Animator pistolWhip;
+    [SerializeField] Animator shotgunWhip;
+    [SerializeField] int meleeDamage = 100;
+    [SerializeField] float punchDistance = 1f;
+    bool melee = false;
+
     float randomRange = 10f;
     RaycastHit objectHit;
 
@@ -49,23 +56,30 @@ public class FireWeapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && pistolDown == false && pistol.active == true)
+        if(melee == false)
         {
-            pistolShoot();
-        }
-        if (Input.GetMouseButtonDown(0) && shotgunDown == false && shotgun.active == true)
-        {
-            shotgunShoot();
-        }
-        if (Input.GetMouseButton(1))
-        {
-            pistol.transform.localPosition = aimingPosition;
-            shotgun.transform.localPosition = aimingPosition;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            pistol.transform.localPosition = startingPosition;
-            shotgun.transform.localPosition = startingPosition;
+            if (Input.GetMouseButtonDown(0) && pistolDown == false && pistol.active == true)
+            {
+                pistolShoot();
+            }
+            if (Input.GetMouseButtonDown(0) && shotgunDown == false && shotgun.active == true)
+            {
+                shotgunShoot();
+            }
+            if (Input.GetMouseButton(1))
+            {
+                pistol.transform.localPosition = aimingPosition;
+                shotgun.transform.localPosition = aimingPosition;
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                pistol.transform.localPosition = startingPosition;
+                shotgun.transform.localPosition = startingPosition;
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                StartCoroutine(meleeAnim());
+            }
         }
     }
 
@@ -140,11 +154,53 @@ public class FireWeapon : MonoBehaviour
         shotgunSwitch();
     }
 
+    void MeleeHit()
+    {
+        Vector3 rayDirection = cameraController.transform.forward;
+        Debug.DrawRay(rayOrigin.position, rayDirection * punchDistance, Color.yellow, 1f);
+
+        if (Physics.Raycast(rayOrigin.position, rayDirection, out objectHit, shootDistance, hitLayers))
+        {
+            if (objectHit.transform.tag == "Enemy")
+            {
+                EnemyShooter enemyShooter = objectHit.transform.gameObject.GetComponent<EnemyShooter>();
+                if (enemyShooter != null)
+                {
+                    enemyShooter.TakeDamage(meleeDamage);
+                }
+            }
+            Debug.Log("You hit the " + objectHit.transform.name);
+        }
+    }
+
     IEnumerator shotgunWait()
     {
         shotgunDown = true;
         yield return new WaitForSeconds(pistolCooldown);
         shotgunDown = false;
+    }
+
+    IEnumerator meleeAnim()
+    {
+        melee = true;
+        if(pistol.active == true)
+        {
+            pistolWhip.Play("PistolWhip");
+            yield return new WaitForSeconds(0.25f);
+            MeleeHit();
+            yield return new WaitForSeconds(0.75f);
+            pistolWhip.Play("IdlePistol");
+
+        }
+        if (shotgun.active == true)
+        {
+            shotgunWhip.Play("ShotgunWhip");
+            yield return new WaitForSeconds(0.25f);
+            MeleeHit();
+            yield return new WaitForSeconds(0.75f);
+            shotgunWhip.Play("IdleShotgun");
+        }
+        melee = false;
     }
 
     public void shotgunSwitch()

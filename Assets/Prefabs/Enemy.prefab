@@ -117,6 +117,7 @@ MonoBehaviour:
   enemyProjectile: {fileID: 3069521563414672067}
   chargeSound: {fileID: 1546639272034516339}
   shootSound: {fileID: 8349731560431458538}
+  scoreKeeper: {fileID: 0}
   shotCooldown: 1
   projectileLifetime: 2
   projectileSpeed: 500
