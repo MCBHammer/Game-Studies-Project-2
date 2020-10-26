@@ -10,6 +10,7 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] GameObject enemyProjectile;
     [SerializeField] AudioSource chargeSound;
     [SerializeField] AudioSource shootSound;
+    [SerializeField] Level01Controller scoreKeeper;
 
     float chargeTime;
     [SerializeField] float shotCooldown = 1f;
@@ -34,6 +35,7 @@ public class EnemyShooter : MonoBehaviour
         if(health <= 0)
         {
             Destroy(this.gameObject);
+            scoreKeeper._currentScore += 1;
         }
     }
 

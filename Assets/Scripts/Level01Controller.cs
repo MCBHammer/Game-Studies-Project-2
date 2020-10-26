@@ -10,7 +10,7 @@ public class Level01Controller : MonoBehaviour
     [SerializeField] GameObject _popUp;
     [SerializeField] GameObject _deathPopUp;
 
-    int _currentScore;
+    public int _currentScore;
     bool _menuOpen = false;
 
     void Start()
@@ -30,10 +30,6 @@ public class Level01Controller : MonoBehaviour
                 _menuOpen = true;
                 CursorUnlock();
                 Time.timeScale = 0f;
-            }
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _currentScore += 5;
             }
         } else
         {

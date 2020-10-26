@@ -12913,6 +12913,16 @@ PrefabInstance:
       propertyPath: targetPlayer
       value: 
       objectReference: {fileID: 730392055}
+    - target: {fileID: 3069521562440838311, guid: fa6ab1d6bc272064b8f7bac5a90502d0,
+        type: 3}
+      propertyPath: scoreKeeper
+      value: 
+      objectReference: {fileID: 368233676}
+    - target: {fileID: 3069521562440838329, guid: fa6ab1d6bc272064b8f7bac5a90502d0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: efee4815aa4cea349af89b0950f20ba6, type: 2}
     - target: {fileID: 3069521562440838331, guid: fa6ab1d6bc272064b8f7bac5a90502d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12990,7 +13000,7 @@ PrefabInstance:
     - target: {fileID: 8009665948865115877, guid: 54a8b26b6f9d5254ebaac72ed488ae61,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.956
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 8009665948865115877, guid: 54a8b26b6f9d5254ebaac72ed488ae61,
         type: 3}
