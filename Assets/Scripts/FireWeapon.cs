@@ -86,7 +86,8 @@ public class FireWeapon : MonoBehaviour
                 }
             }
             Debug.Log("You hit the " + objectHit.transform.name);
-            Instantiate(hitLightPrefab, objectHit.point, Quaternion.identity);
+            GameObject light = (GameObject)Instantiate(hitLightPrefab, objectHit.point, Quaternion.identity);
+            Destroy(light, 1f);
         } else
         {
             Debug.Log("Miss");
@@ -124,7 +125,8 @@ public class FireWeapon : MonoBehaviour
                         enemyShooter.TakeDamage(shotgunDamage);
                     }
                 }
-                Instantiate(hitLightPrefab, objectHit.point, Quaternion.identity);
+                GameObject light = (GameObject)Instantiate(hitLightPrefab, objectHit.point, Quaternion.identity);
+                Destroy(light, 1f);
             }
             else
             {
