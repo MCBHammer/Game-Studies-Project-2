@@ -8,6 +8,8 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] ParticleSystem chargeParticles;
     [SerializeField] Transform targetPlayer;
     [SerializeField] GameObject enemyProjectile;
+    [SerializeField] AudioSource chargeSound;
+    [SerializeField] AudioSource shootSound;
 
     float chargeTime;
     [SerializeField] float shotCooldown = 1f;
@@ -57,8 +59,10 @@ public class EnemyShooter : MonoBehaviour
     {
         firing = true;
         chargeParticles.Play();
+        chargeSound.Play();
         yield return new WaitForSeconds(chargeTime);
         Shoot();
+        chargeSound.Stop();
         yield return new WaitForSeconds(shotCooldown);
     }
 
@@ -75,6 +79,7 @@ public class EnemyShooter : MonoBehaviour
         projectileRB.velocity = Vector3.zero;
         projectileRB.angularVelocity = Vector3.zero;
         projectileRB.AddForce(transform.forward * projectileSpeed);
+        shootSound.Play();
         yield return new WaitForSeconds(projectileLifetime);
         enemyProjectile.SetActive(false);
         firing = false;
