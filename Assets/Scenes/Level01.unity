@@ -5964,6 +5964,7 @@ MonoBehaviour:
   shotgunDamage: 5
   shotgunShots: 10
   shotgunAmmoMax: 10
+  shotgunRecoil: 250
 --- !u!1 &799690664
 GameObject:
   m_ObjectHideFlags: 0

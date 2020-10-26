@@ -9,6 +9,7 @@ public class ShotgunPickup : MonoBehaviour
         if (other.tag == "Player")
         {
             FireWeapon weaponSwitch = other.GetComponent<FireWeapon>();
+            weaponSwitch.shotgunReload();
             weaponSwitch.shotgunSwitch();
             Destroy(this.gameObject);
         }

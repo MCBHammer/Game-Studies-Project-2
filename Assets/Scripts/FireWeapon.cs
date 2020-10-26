@@ -28,12 +28,14 @@ public class FireWeapon : MonoBehaviour
     [SerializeField] int shotgunDamage = 5;
     [SerializeField] int shotgunShots = 10;
     [SerializeField] int shotgunAmmoMax = 10;
+    [SerializeField] float shotgunRecoil = 10;
     int shotgunAmmo;
     bool shotgunDown = false;
 
     float randomRange = 10f;
     RaycastHit objectHit;
 
+    Rigidbody playerRB;
     Vector3 startingPosition;
     Vector3 aimingPosition;
 
@@ -42,6 +44,7 @@ public class FireWeapon : MonoBehaviour
         shotgunAmmo = shotgunAmmoMax;
         startingPosition = pistol.transform.localPosition;
         aimingPosition.Set(0, -0.25f, 0.32f);
+        playerRB = this.gameObject.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -109,6 +112,7 @@ public class FireWeapon : MonoBehaviour
         StartCoroutine(shotgunWait());
         shotgunAmmo--;
         shotgunAmmoBoard.text = ("Shotgun Ammo: " + shotgunAmmo);
+        playerRB.AddForce(cameraController.transform.forward * -shotgunRecoil);
 
         for(int i = 0; i < shotgunShots; i++)
         {
@@ -157,7 +161,11 @@ public class FireWeapon : MonoBehaviour
             pistol.SetActive(true);
             shotgun.SetActive(false);
             shotgunAmmoBoard.gameObject.SetActive(false);
-            shotgunAmmo = shotgunAmmoMax;
         }
+    }
+
+    public void shotgunReload()
+    {
+        shotgunAmmo = shotgunAmmoMax;
     }
 }
