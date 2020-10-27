@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    [SerializeField] GameData _gameData = null;
     public int _healthRestored = 20;
+    GameObject dataManager;
+    GameData _gameData;
+
+    void Start()
+    {
+        dataManager = GameObject.Find("DataManager");
+        _gameData = dataManager.GetComponent<GameData>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
