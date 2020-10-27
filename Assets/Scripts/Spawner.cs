@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviour
             position.z += Random.Range(zRangeForward, zRangeBackward);
 
             float rand = Random.value;
-            GameObject prefab; //temp variable 
+            GameObject prefab; //temp variable
             if (rand < chanceToSpawnShotgun)
             { //spawn bad prefab
                 prefab = Instantiate(shotgunPrefab, position, transform.rotation);
