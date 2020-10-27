@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class DamageDetector : MonoBehaviour
 {
-    [SerializeField] GameData _gameData = null;
+    GameObject dataManager;
+    GameData _gameData;
     public int _damageDealt = 20;
+
+    void Start()
+    {
+        dataManager = GameObject.Find("DataManager");
+        _gameData = dataManager.GetComponent<GameData>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

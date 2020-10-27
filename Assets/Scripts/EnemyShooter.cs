@@ -26,7 +26,12 @@ public class EnemyShooter : MonoBehaviour
         chargeTime = chargeParticles.duration;
         projectileRB = enemyProjectile.GetComponent<Rigidbody>();
         Physics.IgnoreCollision(enemyProjectile.GetComponent<BoxCollider>(), this.gameObject.GetComponent<SphereCollider>());
-        //ReadyFire();
+
+        GameObject levelController = GameObject.Find("LevelController");
+        scoreKeeper = levelController.GetComponent<Level01Controller>();
+
+        GameObject player = GameObject.Find("FPSCharacter");
+        targetPlayer = player.transform;
     }
 
     public void TakeDamage(int damageTaken)
